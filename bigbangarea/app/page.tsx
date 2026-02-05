@@ -1,4 +1,5 @@
 import Arena from './src/Arena/Arena'; // Vérifie bien le chemin vers ton fichier
+import GithubLogin from './src/Arena/GithubLogin';
 import GithubProfile from './src/Arena/GithubProfile';
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
         <GithubProfile />
       </div>
       <Arena />
+      <GithubLogin/>
     </main>
   );
 }
