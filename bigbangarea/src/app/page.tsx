@@ -1,6 +1,7 @@
-import Arena from './src/Arena/Arena'; // Vérifie bien le chemin vers ton fichier
-import GithubLogin from './src/Arena/GithubLogin';
-import GithubProfile from './src/Arena/GithubProfile';
+import Arena from "./Arena/Arena";
+import GithubLogin from "./Arena/GithubLogin";
+import GithubProfile from "./Arena/GithubProfile";
+
 
 export default function Home() {
   return (

@@ -1,6 +1,5 @@
 "use client"
-import { Agent } from '@/app/src/domain/Agent';
-import { GameEngine } from '@/app/src/engine/GameEngine';
+import { GameEngine } from '@/src/engine/GameEngine';
 import { renderToHTML } from 'next/dist/server/render';
 import React, { useRef, useEffect } from 'react';
 
@@ -25,7 +24,6 @@ const Canvas = (props: React.CanvasHTMLAttributes<HTMLCanvasElement>) =>  {
 
 export default function Arena() {
   return <div  className='arena'>
-
     <Canvas width="800" height="500"></Canvas>
     </div>
 }
