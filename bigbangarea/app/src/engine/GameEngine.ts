@@ -1,6 +1,7 @@
 import { Agent } from '../domain/Agent';
 import { Solde } from '../domain/Solde';
 import { GameLoop } from './GameLoop';
+import { SaveManager } from './SaveManager';
 
 export class GameEngine {
   private loop: GameLoop;
@@ -9,7 +10,7 @@ export class GameEngine {
   private ctx: CanvasRenderingContext2D;
   private bgImage: HTMLImageElement;
   private bgPattern: CanvasPattern | null = null;
-
+  private timerAutoSave: number = 0;
 
   constructor(public canvas: HTMLCanvasElement) {
     const context = canvas.getContext('2d');
@@ -35,14 +36,23 @@ export class GameEngine {
         this.bgPattern = this.ctx.createPattern(offscreenCanvas, "repeat");
     };
 
-
-
     this.loop = new GameLoop(
         (dt) => this.update(dt),
         () => this.render()
     );
 
-    this.initObjectsGames();
+    const save = SaveManager.load(this.canvas);
+
+    if (save) {
+      console.log("✅  Save found !");
+
+      this.solde = new Solde(this.canvas);
+      this.solde.money = save.money;
+      this.agents = save.agents;
+    } else {
+        console.log("✨ New Game !");
+        this.initObjectsGames();
+    }
   }
 
   private initObjectsGames() {
@@ -63,6 +73,17 @@ export class GameEngine {
   }
 
   private update(dt: number) {
+    this.timerAutoSave += dt;
+
+
+
+    if (this.timerAutoSave >= 5000) {
+      console.log("Auto save !")
+      this.timerAutoSave = 0;
+      SaveManager.save(this.solde, this.agents);
+    }
+
+
     for (let i = this.agents.length - 1; i >= 0; i--) {
         const agent = this.agents[i];
 
@@ -75,7 +96,6 @@ export class GameEngine {
             this.agents.splice(i, 1);
         }
     }
-    // Logique de gestion des agents ici
   }
 
   private render() {

@@ -17,7 +17,7 @@ export class Agent {
     public imgSrc: string,
     minutesToLive: number,
 
-    private moneyProduction:number = 10,
+    public moneyProduction:number = 10,
   ) {
     this.ctx = canvas.getContext('2d');
     this.timeLeft = minutesToLive * 60 * 1000;

@@ -1,5 +1,5 @@
-import Arena from './components/Arena/Arena'; // Vérifie bien le chemin vers ton fichier
-import GithubProfile from './components/Arena/GithubProfile';
+import Arena from './src/Arena/Arena'; // Vérifie bien le chemin vers ton fichier
+import GithubProfile from './src/Arena/GithubProfile';
 
 export default function Home() {
   return (

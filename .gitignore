@@ -12,8 +12,6 @@
 
 .env.local
 
-dev.db
-
 .env
 # testing
 /coverage

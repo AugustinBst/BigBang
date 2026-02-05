@@ -6,7 +6,7 @@ export class Solde {
 
   constructor(
     public canvas: HTMLCanvasElement,
-    public solde: number = 200,
+    public money: number = 200,
   ) {
     this.ctx = canvas.getContext('2d');
   }
@@ -27,14 +27,14 @@ export class Solde {
         this.ctx.fillStyle = "green"
         this.ctx.textAlign = "center";
         this.ctx.textBaseline = "middle";
-        this.ctx.fillText(String(this.solde), centerX, centerY, 100)
+        this.ctx.fillText(String(this.money), centerX, centerY, 100)
 
     return;
   }
 
 
   add(money: number) {
-    this.solde += money
+    this.money += money
     return;
   }
 

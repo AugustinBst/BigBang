@@ -1,6 +1,6 @@
 "use client"
-import { Agent } from '@/app/domain/Agent';
-import { GameEngine } from '@/app/engine/GameEngine';
+import { Agent } from '@/app/src/domain/Agent';
+import { GameEngine } from '@/app/src/engine/GameEngine';
 import { renderToHTML } from 'next/dist/server/render';
 import React, { useRef, useEffect } from 'react';
 
