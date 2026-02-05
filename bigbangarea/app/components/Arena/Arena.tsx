@@ -25,7 +25,6 @@ const Canvas = (props: React.CanvasHTMLAttributes<HTMLCanvasElement>) =>  {
 
 export default function Arena() {
   return <div  className='arena'>
-    Hello Next.js!
 
     <Canvas width="800" height="500"></Canvas>
     </div>

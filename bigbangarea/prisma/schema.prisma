@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// --- TON LEADERBOARD ---
+model HighScore {
+  id         String   @id @default(uuid())
+  username   String
+  avatarUrl  String?  // Le ? veut dire que c'est optionnel
+  githubUrl  String
+
+  money      Float    // Ton solde
+  agentCount Int      // Nombre d'agents
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Pour trier ultra vite par argent
+  @@index([money(sort: Desc)])
+}
