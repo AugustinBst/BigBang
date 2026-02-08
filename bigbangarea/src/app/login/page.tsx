@@ -2,11 +2,17 @@
 
 import { signIn } from 'next-auth/react';
 import { Github, Sparkles, Lock, ArrowRight } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function LoginPage() {
   const [isHovering, setIsHovering] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSignIn = async () => {
     setIsLoading(true);
@@ -20,7 +26,7 @@ export default function LoginPage() {
         <div className="absolute -left-1/4 top-0 h-96 w-96 animate-pulse rounded-full bg-cyan-100 blur-3xl" />
         <div className="absolute -right-1/4 top-1/3 h-96 w-96 animate-pulse rounded-full bg-cyan-100 blur-3xl animation-delay-2000" />
       </div>
-        
+
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f12_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f12_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
@@ -28,7 +34,7 @@ export default function LoginPage() {
       <div className="relative z-10 w-full max-w-md">
         {/* Glow effect behind card */}
         <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-purple-100 via-pink-300 to-blue-300 opacity-75 blur-xl" />
-        
+
         <div className="relative rounded-3xl border border-white/10 bg-slate-900/50 p-8 shadow-2xl backdrop-blur-xl sm:p-12">
           {/* Icon header with animation */}
           <div className="mb-8 flex justify-center">
@@ -121,21 +127,22 @@ export default function LoginPage() {
       </div>
 
       {/* Floating particles effect */}
-      <div className="pointer-events-none absolute inset-0">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute h-1 w-1 rounded-full bg-white/20 animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${5 + Math.random() * 10}s`,
-            }}
-          />
-        ))}
-      </div>
-
+      {mounted && (
+        <div className="pointer-events-none absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute h-1 w-1 rounded-full bg-white/20 animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${5 + Math.random() * 10}s`,
+              }}
+            />
+          ))}
+        </div>
+      )}
       <style jsx>{`
         @keyframes float {
           0%, 100% {
@@ -149,7 +156,7 @@ export default function LoginPage() {
             opacity: 1;
           }
           100% {
-            transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px);
+            transform: translateY(-100vh) translateX(20px);
             opacity: 0;
           }
         }
